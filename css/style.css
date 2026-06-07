@@ -1,0 +1,479 @@
+/* =========================================================
+   LORENZO CLAVE PORTFOLIO — style.css
+   Pairs with Bootstrap 5. All custom classes use the
+   "lc-" prefix so they never clash with Bootstrap utilities.
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. FONTS & CSS VARIABLES
+   --------------------------------------------------------- */
+:root {
+  --lc-brown:        #5C4033;
+  --lc-green:        #2E8B57;
+  --lc-light-green:  #8FBC8F;
+  --lc-meadow:       #C8F5C1;
+  --lc-bg:           #ffffff;
+  --lc-bg-alt:       #f2fbf2;
+  --lc-text:         #333333;
+  --lc-text-muted:   #666666;
+  --lc-border:       rgba(92,64,51,0.14);
+  --lc-font-head:    'Playfair Display', Georgia, serif;
+  --lc-font-body:    'DM Sans', 'Segoe UI', sans-serif;
+  --lc-radius:       14px;
+  --lc-ease:         0.3s ease;
+}
+
+body.dark-mode {
+  --lc-bg:          #111111;
+  --lc-bg-alt:      #1a1a1a;
+  --lc-text:        #e4e4e4;
+  --lc-text-muted:  #999999;
+  --lc-border:      rgba(255,255,255,0.08);
+}
+
+/* ---------------------------------------------------------
+   2. BASE
+   --------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family:      var(--lc-font-body);
+  color:            var(--lc-text);
+  background-color: var(--lc-bg);
+  line-height:      1.7;
+  transition: background-color var(--lc-ease), color var(--lc-ease);
+}
+
+
+/* ---------------------------------------------------------
+   3. NAVBAR
+   --------------------------------------------------------- */
+.lc-navbar {
+  background: rgba(92,64,51,0.93);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 10px 0;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+}
+.lc-brand {
+  font-family: var(--lc-font-head);
+  font-size: 1.62rem;
+  color: #fff !important;
+  text-decoration: none;
+}
+.lc-nav-link {
+  color: rgba(255,255,255,0.85) !important;
+  font-weight: 500;
+  font-size: 1.31rem;
+  padding: 7px 14px !important;
+  border-radius: 6px;
+  transition: var(--lc-ease);
+  text-decoration: none;
+  display: block;
+}
+.lc-nav-link:hover { color: #fff !important; background: rgba(255,255,255,0.12); }
+.lc-toggler {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 6px;
+  padding: 6px 9px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.lc-toggler span {
+  width: 22px; height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  display: block;
+  transition: var(--lc-ease);
+}
+.lc-theme-btn {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 50%;
+  width: 36px; height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.1rem;
+  transition: var(--lc-ease);
+  flex-shrink: 0;
+}
+.lc-theme-btn:hover { background: rgba(255,255,255,0.15); }
+body.dark-mode .lc-navbar { background: #0a0a0a; }
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: var(--lc-brown);
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 8px;
+  }
+  body.dark-mode .navbar-collapse { background: #0a0a0a; }
+  .lc-nav-link { padding: 10px 16px !important; }
+}
+
+/* ---------------------------------------------------------
+   4. SHARED SECTION
+   --------------------------------------------------------- */
+.lc-section     { padding: 90px 0; background: var(--lc-bg-alt); }
+.lc-section-alt { padding: 90px 0; background: var(--lc-bg-alt); }
+.lc-label {
+  display: inline-block;
+  color: var(--lc-green);
+  font-weight: 600;
+  font-size: 1.02rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+.lc-section-title {
+  font-family: var(--lc-font-head);
+  font-size: clamp(2.33rem, 5.18vw, 3.37rem);
+  color: var(--lc-brown);
+  margin-bottom: 10px;
+  line-height: 1.15;
+}
+body.dark-mode .lc-section-title { color: var(--lc-light-green); }
+.lc-sub-title {
+  font-family: var(--lc-font-head);
+  font-size: 1.94rem;
+  color: var(--lc-brown);
+  margin-top: 0;
+}
+body.dark-mode .lc-sub-title { color: var(--lc-light-green); }
+.lc-highlight {
+  background: rgba(46,139,87,0.11);
+  color: var(--lc-green);
+  font-weight: 600;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+body.dark-mode .lc-highlight { background: rgba(143,188,143,0.2); color: var(--lc-light-green); }
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s ease-out, transform 0.75s ease-out;
+}
+.reveal-on-scroll.active { opacity: 1; transform: translateY(0); }
+
+/* ---------------------------------------------------------
+   5. BUTTONS
+   --------------------------------------------------------- */
+.lc-btn {
+  display: inline-block;
+  padding: 11px 26px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.42rem;
+  text-decoration: none;
+  transition: var(--lc-ease);
+  cursor: pointer;
+  border: 2px solid transparent;
+  letter-spacing: 0.3px;
+  text-align: center;
+}
+.lc-btn-primary  { background: var(--lc-green); color: #fff; border-color: var(--lc-green); }
+.lc-btn-primary:hover { background: var(--lc-brown); border-color: var(--lc-brown); color: #fff; }
+.lc-btn-outline  { background: transparent; color: var(--lc-green); border-color: var(--lc-green); }
+.lc-btn-outline:hover { background: var(--lc-green); color: #fff; }
+
+/* ---------------------------------------------------------
+   6. HERO SECTION
+   --------------------------------------------------------- */
+.lc-hero {
+  background: var(--lc-bg-alt);
+  padding: 100px 0 80px;
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+}
+body.dark-mode .lc-hero { background: #1a1a1a; }
+.lc-hero-title {
+  font-family: var(--lc-font-head);
+  font-size: clamp(2.85rem, 6.48vw, 4.92rem);
+  line-height: 1.1;
+  color: var(--lc-brown);
+  margin: 10px 0 18px;
+}
+
+body.dark-mode .lc-hero-title { color: #dff5df; }
+.lc-gradient-text {
+  background: linear-gradient(120deg, var(--lc-green), var(--lc-brown));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: clamp(5.18rem, 10.37vw, 7.78rem);
+}
+
+.lc-hero-desc {
+  font-style: italic;
+  font-size: 1.68rem;
+  color: var(--lc-text-muted);
+  max-width: auto;
+  margin-bottom: 28px;
+  margin-right: 50px;
+}
+.lc-stat { display: flex; flex-direction: column; text-align: center; }
+.lc-stat-num {
+  font-size: 2.47rem;
+  font-weight: 700;
+  color: var(--lc-brown);
+  line-height: 1;
+}
+body.dark-mode .lc-stat-num { color: var(--lc-light-green); }
+.lc-stat-lbl { font-size: 0.95rem; color: var(--lc-text-muted); margin-top: 2px; }
+
+.lc-hero-img-wrap {
+  display: inline-block;
+  position: relative;
+}
+
+/* --- HERO IMAGE DARK MODE SWAPPING --- */
+
+/* 1. By default, completely hide the dark variant */
+.lc-dark-img {
+  display: none !important;
+}
+
+/* 2. When the body gets the .dark-mode class, swap their behaviors */
+body.dark-mode .lc-light-img {
+  display: none !important;
+}
+
+body.dark-mode .lc-dark-img {
+  display: block !important;
+}
+
+.lc-hero-img {
+  width: 440px; height: 500px;
+  object-fit: cover;
+  border-radius: var(--lc-radius);
+  border: 4px solid var(--lc-green);
+  position: relative;
+  z-index: 1;
+  display: block;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.380);
+}
+body.dark-mode .lc-hero-img {
+  box-shadow: 0 20px 40px #C8F5C141;
+}
+@media (max-width: 767px) { .lc-hero-img { width: 220px; height: 260px; } }
+
+/* ---------------------------------------------------------
+   7. ABOUT SECTION
+   --------------------------------------------------------- */
+.lc-about-img {
+  width: 100%;
+  max-width: 360px;
+  border-radius: var(--lc-radius);
+  box-shadow: 14px 14px 0 var(--lc-light-green);
+}
+.lc-fun-facts {
+  background: rgba(46,139,87,0.06);
+  border-left: 4px solid var(--lc-brown);
+  border-radius: 0 10px 10px 0;
+  padding: 16px 22px;
+}
+.lc-fun-facts h4 {
+  margin-top: 0;
+  font-size: 1.21rem;
+  font-weight: 600;
+  color: var(--lc-brown);
+}
+body.dark-mode .lc-fun-facts h4 { color: var(--lc-light-green); }
+.lc-fun-facts li { margin-bottom: 7px; }
+
+/* ---------------------------------------------------------
+   8. SKILLS SECTION
+   --------------------------------------------------------- */
+.lc-skills-cat { margin-bottom: 48px; }
+.lc-skills-cat-title {
+  font-size: 1.36rem;
+  font-weight: 600;
+  color: var(--lc-brown);
+  margin-bottom: 18px;
+  padding-bottom: 7px;
+  border-bottom: 2px solid var(--lc-border);
+  display: inline-block;
+}
+body.dark-mode .lc-skills-cat-title { color: var(--lc-light-green); }
+.lc-skill-card {
+  background: var(--lc-bg);
+  border: 1px solid var(--lc-border);
+  border-radius: var(--lc-radius);
+  padding: 20px 14px;
+  text-align: center;
+  height: 100%;
+  transition: transform var(--lc-ease), box-shadow var(--lc-ease);
+}
+.lc-skill-card:hover { transform: translateY(-5px); box-shadow: 0 10px 24px rgba(46,139,87,0.15); }
+body.dark-mode .lc-skill-card { background: #1e1e1e; border-color: rgba(255,255,255,0.08); }
+.lc-skill-icon {
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.lc-skill-icon img { width: 44px; height: 44px; object-fit: contain; }
+.lc-icon-fallback {
+  width: 44px; height: 44px;
+  border-radius: 8px;
+  background: var(--lc-green);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lc-skill-name { font-size: 1.06rem; font-weight: 600; color: var(--lc-text); margin-bottom: 10px; }
+.lc-skill-bar { background: #e2e2e2; height: 6px; border-radius: 10px; overflow: hidden; }
+body.dark-mode .lc-skill-bar { background: #333; }
+.lc-skill-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--lc-green), var(--lc-light-green));
+  border-radius: 10px;
+  transition: width 1.4s cubic-bezier(0.17, 0.55, 0.55, 1);
+}
+.lc-skill-pct { font-size: 0.91rem; color: var(--lc-text-muted); margin-top: 4px; text-align: right; }
+
+/* ---------------------------------------------------------
+   9. PROJECTS SECTION
+   --------------------------------------------------------- */
+.lc-project-card {
+  background: var(--lc-bg);
+  border: 1px solid var(--lc-border);
+  border-radius: var(--lc-radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--lc-ease), box-shadow var(--lc-ease);
+}
+.lc-project-card:hover { transform: translateY(-8px); box-shadow: 0 16px 36px rgba(0,0,0,0.1); }
+body.dark-mode .lc-project-card { background: #1e1e1e; border-color: rgba(255,255,255,0.08); }
+.lc-project-img-wrap { position: relative; height: 200px; background: var(--lc-meadow); overflow: hidden; }
+.lc-project-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.lc-project-overlay {
+  position: absolute; inset: 0;
+  background: rgba(92,64,51,0.82);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0;
+  transition: opacity var(--lc-ease);
+}
+.lc-project-card:hover .lc-project-overlay { opacity: 1; }
+.lc-view-btn {
+  color: #fff;
+  border: 2px solid #fff;
+  padding: 8px 20px;
+  border-radius: 7px;
+  font-weight: 600;
+  font-size: 1.08rem;
+  text-decoration: none;
+  transition: background var(--lc-ease);
+}
+.lc-view-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
+.lc-project-info { padding: 20px; flex: 1; }
+.lc-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.lc-tags span {
+  font-size: 0.86rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.5px;
+  background: var(--lc-meadow); color: var(--lc-brown);
+  padding: 3px 10px; border-radius: 30px;
+}
+body.dark-mode .lc-tags span { background: rgba(46,139,87,0.2); color: var(--lc-light-green); }
+.lc-project-title {
+  font-size: 1.42rem; font-weight: 700;
+  color: var(--lc-brown); margin: 10px 0 6px;
+}
+body.dark-mode .lc-project-title { color: var(--lc-light-green); }
+.lc-project-desc { font-size: 1.13rem; color: var(--lc-text-muted); line-height: 1.5; margin: 0; }
+
+/* ---------------------------------------------------------
+   10. CONTACT SECTION
+   --------------------------------------------------------- */
+.lc-form-label {
+  display: block;
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: var(--lc-text);
+  margin-bottom: 5px;
+}
+.lc-form-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--lc-border);
+  border-radius: 8px;
+  font-family: var(--lc-font-body);
+  font-size: 1.17rem;
+  color: var(--lc-text);
+  background: var(--lc-bg);
+  transition: border-color var(--lc-ease), box-shadow var(--lc-ease);
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.lc-form-input:focus {
+  border-color: var(--lc-green);
+  box-shadow: 0 0 0 3px rgba(46,139,87,0.15);
+}
+textarea.lc-form-input { resize: vertical; }
+body.dark-mode .lc-form-input { background: #1e1e1e; color: var(--lc-text); border-color: rgba(255,255,255,0.12); }
+.lc-social-links { display: flex; flex-direction: column; gap: 10px; }
+.lc-social-link {
+  display: flex; align-items: center; gap: 12px;
+  color: var(--lc-text); text-decoration: none;
+  font-weight: 500; font-size: 1.17rem;
+  padding: 10px 14px;
+  border: 1px solid var(--lc-border);
+  border-radius: 9px;
+  transition: var(--lc-ease);
+}
+.lc-social-link:hover { background: var(--lc-green); color: #fff; border-color: var(--lc-green); }
+.lc-social-link svg { flex-shrink: 0; }
+.lc-contact-details { display: flex; flex-direction: column; gap: 10px; }
+.lc-contact-detail-item {
+  display: flex; align-items: center; gap: 10px;
+  color: var(--lc-text-muted); font-size: 1.17rem;
+}
+
+/* ---------------------------------------------------------
+   11. FOOTER
+   --------------------------------------------------------- */
+.lc-footer {
+  background: var(--lc-brown);
+  color: rgba(255,255,255,0.85);
+  padding: 34px 0;
+  font-size: 1.14rem;
+}
+body.dark-mode .lc-footer { background: #0a0a0a; }
+
+/* Back to Top Button */
+.back-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 44px;
+  height: 44px;
+  background: var(--lc-green);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.56rem;
+  text-decoration: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, background 0.3s ease;
+  z-index: 999;
+}
+.back-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.back-top:hover { background: var(--lc-brown); color: #fff; }
